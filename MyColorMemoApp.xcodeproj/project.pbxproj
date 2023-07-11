@@ -9,13 +9,15 @@
 /* Begin PBXBuildFile section */
 		AAB5E21A2A577F4700B3377A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB5E2192A577F4700B3377A /* AppDelegate.swift */; };
 		AAB5E21C2A577F4700B3377A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB5E21B2A577F4700B3377A /* SceneDelegate.swift */; };
-		AAB5E21E2A577F4700B3377A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB5E21D2A577F4700B3377A /* ViewController.swift */; };
 		AAB5E2212A577F4700B3377A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAB5E21F2A577F4700B3377A /* Main.storyboard */; };
 		AAB5E2232A577F4900B3377A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAB5E2222A577F4900B3377A /* Assets.xcassets */; };
 		AAB5E2262A577F4900B3377A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAB5E2242A577F4900B3377A /* LaunchScreen.storyboard */; };
 		AAB5E2312A577F4900B3377A /* MyColorMemoAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB5E2302A577F4900B3377A /* MyColorMemoAppTests.swift */; };
 		AAB5E23B2A577F4900B3377A /* MyColorMemoAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB5E23A2A577F4900B3377A /* MyColorMemoAppUITests.swift */; };
 		AAB5E23D2A577F4900B3377A /* MyColorMemoAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB5E23C2A577F4900B3377A /* MyColorMemoAppUITestsLaunchTests.swift */; };
+		AAB5E24C2A58D73B00B3377A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB5E24B2A58D73B00B3377A /* HomeViewController.swift */; };
+		AAB5E24E2A5A428B00B3377A /* MemoDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB5E24D2A5A428B00B3377A /* MemoDataModel.swift */; };
+		AAB5E2502A5A45A000B3377A /* MemoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB5E24F2A5A45A000B3377A /* MemoDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +41,6 @@
 		AAB5E2162A577F4700B3377A /* MyColorMemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyColorMemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAB5E2192A577F4700B3377A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AAB5E21B2A577F4700B3377A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AAB5E21D2A577F4700B3377A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AAB5E2202A577F4700B3377A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AAB5E2222A577F4900B3377A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AAB5E2252A577F4900B3377A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +50,9 @@
 		AAB5E2362A577F4900B3377A /* MyColorMemoAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyColorMemoAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAB5E23A2A577F4900B3377A /* MyColorMemoAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyColorMemoAppUITests.swift; sourceTree = "<group>"; };
 		AAB5E23C2A577F4900B3377A /* MyColorMemoAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyColorMemoAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		AAB5E24B2A58D73B00B3377A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = ../HomeViewController.swift; sourceTree = "<group>"; };
+		AAB5E24D2A5A428B00B3377A /* MemoDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoDataModel.swift; sourceTree = "<group>"; };
+		AAB5E24F2A5A45A000B3377A /* MemoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +103,11 @@
 		AAB5E2182A577F4700B3377A /* MyColorMemoApp */ = {
 			isa = PBXGroup;
 			children = (
+				AAB5E24B2A58D73B00B3377A /* HomeViewController.swift */,
+				AAB5E24F2A5A45A000B3377A /* MemoDetailViewController.swift */,
+				AAB5E24D2A5A428B00B3377A /* MemoDataModel.swift */,
 				AAB5E2192A577F4700B3377A /* AppDelegate.swift */,
 				AAB5E21B2A577F4700B3377A /* SceneDelegate.swift */,
-				AAB5E21D2A577F4700B3377A /* ViewController.swift */,
 				AAB5E21F2A577F4700B3377A /* Main.storyboard */,
 				AAB5E2222A577F4900B3377A /* Assets.xcassets */,
 				AAB5E2242A577F4900B3377A /* LaunchScreen.storyboard */,
@@ -258,9 +264,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AAB5E21E2A577F4700B3377A /* ViewController.swift in Sources */,
 				AAB5E21A2A577F4700B3377A /* AppDelegate.swift in Sources */,
 				AAB5E21C2A577F4700B3377A /* SceneDelegate.swift in Sources */,
+				AAB5E24C2A58D73B00B3377A /* HomeViewController.swift in Sources */,
+				AAB5E2502A5A45A000B3377A /* MemoDetailViewController.swift in Sources */,
+				AAB5E24E2A5A428B00B3377A /* MemoDataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

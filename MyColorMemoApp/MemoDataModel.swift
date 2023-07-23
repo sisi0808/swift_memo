@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct MemoDataModel {
-    var text: String
-    var recordDate: Date
+class MemoDataModel: Object {
+    @objc dynamic var id: String = UUID().uuidString // データを一位に識別するための識別子
+    @objc dynamic var text: String = ""
+    @objc dynamic var recordDate: Date = Date()
 }

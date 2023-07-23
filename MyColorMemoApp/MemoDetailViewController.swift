@@ -6,12 +6,12 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MemoDetailViewController: UIViewController{
     @IBOutlet var textView: UITextView!
     
-    var text: String = ""
-    var recordDate: Date = Date()
+    var memoData = MemoDataModel()
     
     var dateFormat: DateFormatter{
         let dateFormatter = DateFormatter()
@@ -24,16 +24,17 @@ class MemoDetailViewController: UIViewController{
         super.viewDidLoad()
         displayData()
         setDoneButton()
+        textView.delegate = self
     }
     
     func configure(memo: MemoDataModel){
-        text = memo.text
-        recordDate = memo.recordDate
+        memoData.text = memo.text
+        memoData.recordDate = memo.recordDate
     }
     
     func displayData(){
-        textView.text = text
-        navigationItem.title = dateFormat.string(from:recordDate)
+        textView.text = memoData.text
+        navigationItem.title = dateFormat.string(from:memoData.recordDate)
     }
     
     @objc func tapDoneButton(){
@@ -45,5 +46,22 @@ class MemoDetailViewController: UIViewController{
         let commitBUtton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(tapDoneButton))
         toolBar.items = [commitBUtton]
         textView.inputAccessoryView = toolBar
+    }
+    
+    func saveData(with text: String){
+        let realm = try! Realm()
+        try! realm.write {
+            memoData.text = text
+            memoData.recordDate = Date()
+            realm.add(memoData)
+        }
+    }
+}
+
+extension MemoDetailViewController: UITextViewDelegate{
+    
+    func textViewDidChange(_ textView: UITextView) {
+        let updatedText = textView.text ?? ""
+        saveData(with: updatedText)
     }
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit // UIに関するクラスが格納されたモジュール
+import RealmSwift
 
 class HomeViewController: UIViewController{
     @IBOutlet weak var tableView: UITableView!
@@ -19,16 +20,22 @@ class HomeViewController: UIViewController{
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
-        setMemoData()
         setNavigationBarButton()
+        setLeftNavigationBarButton()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setMemoData()
+        tableView.reloadData()
     }
     
     func setMemoData(){
-        for i in 1...5{
-            let memodataModel = MemoDataModel(text: "このメモは\(i)番目のメモです", recordDate: Date())
-            memoDataList.append(memodataModel)
-        }
+        let realm = try! Realm()
+        let result = realm.objects(MemoDataModel.self)
+        memoDataList = Array(result)
     }
+    
     @objc func tapAddButton(){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let memoDetailViewController = storyboard.instantiateViewController(withIdentifier: "MemoDetailViewController") as! MemoDetailViewController
@@ -39,6 +46,30 @@ class HomeViewController: UIViewController{
         let buttonActionSelector: Selector = #selector(tapAddButton)
         let rightBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: buttonActionSelector)
         navigationItem.rightBarButtonItem = rightBarButton
+    }
+    
+    func setLeftNavigationBarButton(){
+        let buttonActionSelector: Selector = #selector(didTapColorSettingButton)
+        let leftButtonImage = UIImage(named: "night")
+        let leftButton = UIBarButtonItem(image: leftButtonImage, style:.plain, target: self, action: buttonActionSelector)
+        navigationItem.leftBarButtonItem = leftButton
+    }
+    
+    @objc func didTapColorSettingButton(){
+        let defaultAction = UIAlertAction(title: "デフォルト", style: .default, handler: { _ -> Void in
+            print("デフォルトがタップされました")
+        })
+        let orangeAction = UIAlertAction(title: "オレンジ", style: .default, handler: { _ -> Void in
+            print("オレンジがタップされました")
+        })
+        let cancelAction = UIAlertAction(title: "キャンセル", style: .default, handler: nil)
+        let alert = UIAlertController(title: "テーマカラーを選択してください", message: "", preferredStyle: .actionSheet)
+        
+        alert.addAction(defaultAction)
+        alert.addAction(orangeAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true)
     }
 }
 
@@ -74,5 +105,15 @@ extension HomeViewController: UITableViewDelegate{
         tableView.deselectRow(at: indexPath, animated:true)
         // pushされたら遷移
         navigationController?.pushViewController(memoDetailViewController, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let targetMemo = memoDataList[indexPath.row]
+        let realm = try! Realm()
+        try! realm.write{
+            realm.delete(targetMemo)
+        }
+        memoDataList.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
     }
 }
